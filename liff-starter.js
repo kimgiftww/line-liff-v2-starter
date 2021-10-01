@@ -91,7 +91,7 @@ function displayLiffData() {
 */
 function displayIsInClientInfo() {
     if (liff.isInClient()) {
-        window.location.href = "https://line-liff-v2-starter-ten.vercel.app/index"
+        window.location.href = "https://line-liff-v2-starter-ten.vercel.app/index";
         document.getElementById('liffLoginButton').classList.toggle('hidden');
         document.getElementById('liffLogoutButton').classList.toggle('hidden');
         document.getElementById('isInClientMessage').textContent = 'You are opening the app in the in-app browser of LINE.';
