@@ -149,26 +149,48 @@ function registerButtonHandlers() {
     });
 
     // get profile call
+//     document.getElementById('getProfileButton').addEventListener('click', function() {
+//         liff.getProfile().then(function(profile) {
+//             document.getElementById('userIdProfileField').textContent = profile.userId;
+//             document.getElementById('displayNameField').textContent = profile.displayName;
+
+//             const profilePictureDiv = document.getElementById('profilePictureDiv');
+//             if (profilePictureDiv.firstElementChild) {
+//                 profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
+//             }
+//             const img = document.createElement('img');
+//             img.src = profile.pictureUrl;
+//             img.alt = 'Profile Picture';
+//             profilePictureDiv.appendChild(img);
+
+//             document.getElementById('statusMessageField').textContent = profile.statusMessage;
+//             toggleProfileData();
+//         }).catch(function(error) {
+//             window.alert('Error getting profile: ' + error);
+//         });
+//     });
+    
     document.getElementById('getProfileButton').addEventListener('click', function() {
-        liff.getProfile().then(function(profile) {
+        liff.getDecodedIDToken().then(function(profile) {
             document.getElementById('userIdProfileField').textContent = profile.userId;
-            document.getElementById('displayNameField').textContent = profile.displayName;
+            document.getElementById('displayNameField').textContent = profile.name;
 
             const profilePictureDiv = document.getElementById('profilePictureDiv');
             if (profilePictureDiv.firstElementChild) {
                 profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
             }
             const img = document.createElement('img');
-            img.src = profile.pictureUrl;
+            img.src = profile.picture;
             img.alt = 'Profile Picture';
             profilePictureDiv.appendChild(img);
 
-            document.getElementById('statusMessageField').textContent = profile.statusMessage;
+            document.getElementById('statusMessageField').textContent = profile.email;
             toggleProfileData();
         }).catch(function(error) {
             window.alert('Error getting profile: ' + error);
         });
     });
+    
 
     document.getElementById('shareTargetPicker').addEventListener('click', function () {
         if (liff.isApiAvailable('shareTargetPicker')) {
