@@ -182,7 +182,7 @@ function registerButtonHandlers() {
         const raw = liff.getIDToken();
         const profile = liff.getDecodedIDToken();
         document.getElementById('userIdProfileField').textContent = raw;
-        document.getElementById('displayNameField').textContent = profile;
+        document.getElementById('displayNameField').textContent = JSON.stringify(profile);
         const profilePictureDiv = document.getElementById('profilePictureDiv');
         if (profilePictureDiv.firstElementChild) {
             profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
