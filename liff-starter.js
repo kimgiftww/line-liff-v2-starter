@@ -171,7 +171,18 @@ function registerButtonHandlers() {
 //     });
     
     document.getElementById('getProfileButton').addEventListener('click', function() {
-        alert('Log in?');
+        const profile = liff.getDecodedIDToken();
+        document.getElementById('userIdProfileField').textContent = profile.userId;
+        document.getElementById('displayNameField').textContent = profile.name;
+        document.getElementById('statusMessageField').textContent = profile.email;
+        const profilePictureDiv = document.getElementById('profilePictureDiv');
+        if (profilePictureDiv.firstElementChild) {
+            profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
+        }
+        const img = document.createElement('img');
+        img.src = profile.picture;
+        img.alt = 'Profile Picture';
+        profilePictureDiv.appendChild(img);
         toggleProfileData();
     });
     
@@ -195,23 +206,7 @@ function registerButtonHandlers() {
     document.getElementById('liffLoginButton').addEventListener('click', function() {
         if (!liff.isLoggedIn()) {
             // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-            liff.login().then(() => {
-           
-                const profile = liff.getDecodedIDToken();
-                document.getElementById('userIdProfileField').textContent = profile.userId;
-                document.getElementById('displayNameField').textContent = profile.name;
-                document.getElementById('statusMessageField').textContent = profile.email;
-                const profilePictureDiv = document.getElementById('profilePictureDiv');
-                if (profilePictureDiv.firstElementChild) {
-                    profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
-                }
-                const img = document.createElement('img');
-                img.src = profile.picture;
-                img.alt = 'Profile Picture';
-                profilePictureDiv.appendChild(img);
-                
-            });
-
+            liff.login();
         }
     });
 
