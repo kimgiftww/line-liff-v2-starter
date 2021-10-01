@@ -214,7 +214,7 @@ function registerButtonHandlers() {
         if (!liff.isLoggedIn()) {
             // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
             liff.login({
-                redirectUri: "https://vercel.com/kimgiftww/line-liff-v2-starter/index"
+                redirectUri: "https://line-liff-v2-starter-ten.vercel.app/index"
             });
         }
     });
