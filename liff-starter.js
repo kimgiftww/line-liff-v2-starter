@@ -51,7 +51,6 @@ function initializeLiff(myLiffId) {
         .then(() => {
             // start to use LIFF's api
             initializeApp();
-            const profile = liff.getDecodedIDToken();
         })
         .catch((err) => {
             document.getElementById("liffAppContent").classList.add('hidden');
@@ -85,6 +84,21 @@ function displayLiffData() {
     document.getElementById('isInClient').textContent = liff.isInClient();
     document.getElementById('isLoggedIn').textContent = liff.isLoggedIn();
     document.getElementById('deviceOS').textContent = liff.getOS();
+    
+    const profile = liff.getDecodedIDToken();
+    
+    document.getElementById('userIdProfileField').textContent = profile.userId;
+    document.getElementById('displayNameField').textContent = profile.name;
+    document.getElementById('statusMessageField').textContent = profile.email;
+    const profilePictureDiv = document.getElementById('profilePictureDiv');
+    if (profilePictureDiv.firstElementChild) {
+        profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
+    }
+    const img = document.createElement('img');
+    img.src = profile.picture;
+    img.alt = 'Profile Picture';
+    profilePictureDiv.appendChild(img);
+    
 }
 
 /**
@@ -172,19 +186,7 @@ function registerButtonHandlers() {
 //     });
     
     document.getElementById('getProfileButton').addEventListener('click', function() {
-        document.getElementById('userIdProfileField').textContent = profile.userId;
-        document.getElementById('displayNameField').textContent = profile.name;
-
-        const profilePictureDiv = document.getElementById('profilePictureDiv');
-        if (profilePictureDiv.firstElementChild) {
-            profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
-        }
-        const img = document.createElement('img');
-        img.src = profile.picture;
-        img.alt = 'Profile Picture';
-        profilePictureDiv.appendChild(img);
-
-        document.getElementById('statusMessageField').textContent = profile.email;
+        alert('Log in?');
         toggleProfileData();
     });
     
