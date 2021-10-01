@@ -223,7 +223,7 @@ function registerButtonHandlers() {
     document.getElementById('liffLogoutButton').addEventListener('click', function() {
         if (liff.isLoggedIn()) {
             liff.logout();
-            window.location.reload();
+            window.location.href('thanin.kim');
         }
     });
 }
