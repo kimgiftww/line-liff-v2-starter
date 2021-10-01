@@ -219,14 +219,14 @@ function registerButtonHandlers() {
 //         }
 //     });
 
-//     // logout call only when external browse
-//     document.getElementById('liffLogoutButton').addEventListener('click', function() {
-//         if (liff.isLoggedIn()) {
-//             liff.logout();
-//             window.location.reload();
-//         }
-//     });
-// }
+    // logout call only when external browse
+    document.getElementById('liffLogoutButton').addEventListener('click', function() {
+        if (liff.isLoggedIn()) {
+            liff.logout();
+            window.location.reload();
+        }
+    });
+}
 
 /**
 * Alert the user if LIFF is opened in an external browser and unavailable buttons are tapped
