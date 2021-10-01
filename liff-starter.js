@@ -171,8 +171,11 @@ function registerButtonHandlers() {
 //     });
     
     document.getElementById('getProfileButton').addEventListener('click', function() {
+        
+        const raw = liff.getIDToken();
+        
         const profile = liff.getDecodedIDToken();
-        document.getElementById('userIdProfileField').textContent = profile.userId;
+        document.getElementById('userIdProfileField').textContent = raw;
         document.getElementById('displayNameField').textContent = profile.name;
         document.getElementById('statusMessageField').textContent = profile.email;
         const profilePictureDiv = document.getElementById('profilePictureDiv');
