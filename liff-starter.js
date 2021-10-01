@@ -83,22 +83,7 @@ function displayLiffData() {
     document.getElementById('lineVersion').textContent = liff.getLineVersion();
     document.getElementById('isInClient').textContent = liff.isInClient();
     document.getElementById('isLoggedIn').textContent = liff.isLoggedIn();
-    document.getElementById('deviceOS').textContent = liff.getOS();
-    
-    const profile = liff.getDecodedIDToken();
-    
-    document.getElementById('userIdProfileField').textContent = profile.userId;
-    document.getElementById('displayNameField').textContent = profile.name;
-    document.getElementById('statusMessageField').textContent = profile.email;
-    const profilePictureDiv = document.getElementById('profilePictureDiv');
-    if (profilePictureDiv.firstElementChild) {
-        profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
-    }
-    const img = document.createElement('img');
-    img.src = profile.picture;
-    img.alt = 'Profile Picture';
-    profilePictureDiv.appendChild(img);
-    
+    document.getElementById('deviceOS').textContent = liff.getOS();    
 }
 
 /**
@@ -211,6 +196,20 @@ function registerButtonHandlers() {
         if (!liff.isLoggedIn()) {
             // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
             liff.login();
+            
+            const profile = liff.getDecodedIDToken();
+            document.getElementById('userIdProfileField').textContent = profile.userId;
+            document.getElementById('displayNameField').textContent = profile.name;
+            document.getElementById('statusMessageField').textContent = profile.email;
+            const profilePictureDiv = document.getElementById('profilePictureDiv');
+            if (profilePictureDiv.firstElementChild) {
+                profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
+            }
+            const img = document.createElement('img');
+            img.src = profile.picture;
+            img.alt = 'Profile Picture';
+            profilePictureDiv.appendChild(img);
+            
         }
     });
 
