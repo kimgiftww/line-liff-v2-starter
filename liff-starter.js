@@ -172,12 +172,17 @@ function registerButtonHandlers() {
     
     document.getElementById('getProfileButton').addEventListener('click', function() {
         
-        const raw = liff.getIDToken();
+        liff.getProfile().then(function(uid) {
+            document.getElementById('statusMessageField').textContent = uid.userId;
+            toggleProfileData();
+        }).catch(function(error) {
+            window.alert('Error getting profile: ' + error);
+        });
         
+        const raw = liff.getIDToken();
         const profile = liff.getDecodedIDToken();
         document.getElementById('userIdProfileField').textContent = raw;
-        document.getElementById('displayNameField').textContent = profile.name;
-        document.getElementById('statusMessageField').textContent = profile.email;
+        document.getElementById('displayNameField').textContent = profile;
         const profilePictureDiv = document.getElementById('profilePictureDiv');
         if (profilePictureDiv.firstElementChild) {
             profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
@@ -186,7 +191,6 @@ function registerButtonHandlers() {
         img.src = profile.picture;
         img.alt = 'Profile Picture';
         profilePictureDiv.appendChild(img);
-        toggleProfileData();
     });
     
 
